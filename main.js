@@ -1,14 +1,21 @@
 const canvas = document.getElementById("myCanvas");
+canvas.width = 2000;
 canvas.height = 1000;
-canvas.width = 1000;
-
 const ctx = canvas.getContext("2d");
 
-const outterCircle = new RouletteWheel(1000, 500, 200);
-const innerCircle = new RouletteWheel(1000, 500, 25);
-outterCircle.draw(ctx);
-innerCircle.draw(ctx);
+const outterCircle = new RouletteWheel(1000, 500, 200, 1000, 1000); // test circle
+const innerCircle = new RouletteWheel(1000, 500, 25, 100, 100);
 
-const wheelLines = new WheelLine(50, 300, 2, 23);
-wheelLines.draw(ctx);
-console.log(wheelLines.testMethod());
+//outterCircle.draw(ctx);
+//innerCircle.draw(ctx);
+
+for (let i = 0; i < 10; i++) {
+  animate();
+}
+
+function animate() {
+  outterCircle.draw(ctx);
+  outterCircle.update();
+
+  requestAnimationFrame(animate);
+}
